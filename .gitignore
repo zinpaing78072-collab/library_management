@@ -1,0 +1,37 @@
+# Build output
+target/
+build/
+*.class
+
+# Dependencies
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE — VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# IDE — IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IDE — Eclipse / Metals / Bloop
+.classpath
+.project
+.settings/
+.metals/
+.bloop/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Uploaded book images (runtime data, not source)
+book-images/

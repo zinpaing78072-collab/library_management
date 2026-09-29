@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.example/com.example.Main",
+            "projectName": "library_management"
+        },
+        {
+            "type": "java",
+            "name": "Run Library Management (JavaFX)",
+            "request": "launch",
+            "mainClass": "com.example.Main",
+            "projectName": "library_management",
+            "vmArgs": "--module-path ${env:HOME}/.m2/repository/org/openjfx/javafx-base/21.0.6/javafx-base-21.0.6-mac.jar:${env:HOME}/.m2/repository/org/openjfx/javafx-graphics/21.0.6/javafx-graphics-21.0.6-mac.jar:${env:HOME}/.m2/repository/org/openjfx/javafx-controls/21.0.6/javafx-controls-21.0.6-mac.jar:${env:HOME}/.m2/repository/org/openjfx/javafx-fxml/21.0.6/javafx-fxml-21.0.6-mac.jar --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}

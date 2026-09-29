@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="tblBook" prefHeight="672.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.BookTableController">
+   <columns>
+      <TableColumn fx:id="colBID" prefWidth="20.0" text="Book_ID" />
+      <TableColumn fx:id="colTitle" prefWidth="83.0" text="Title" />
+      <TableColumn fx:id="colISBN" prefWidth="70.0" text="ISBN" />
+      <TableColumn fx:id="colCopies" prefWidth="36.0" text="Copies" />
+      <TableColumn fx:id="ColDescription" prefWidth="114.0" text="Description" />
+      <TableColumn fx:id="colImage" prefWidth="99.0" text="Image" />
+      <TableColumn fx:id="colPYear" prefWidth="142.0" text="Published Year" />
+   </columns>
+</TableView>
