@@ -50,7 +50,7 @@ public class AdminController {
 
     @FXML
     private void clickDash() {
-        showScreen("/Book.fxml");
+        showScreen("/DaxhBoard.fxml");
     }
 
     @FXML

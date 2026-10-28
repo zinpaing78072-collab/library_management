@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.controller.AdminController;
+import com.example.controller.AdminDashboardController;
 import com.example.controller.IssueBookController;
 import com.example.controller.ReturnBookController;
 import com.example.service.BookTransactionService;
@@ -212,6 +213,12 @@ public class LoginApp extends Application {
         if (controllerType == PublisherController.class) {
             PublisherController controller = new PublisherController();
             controller.setPublisherService(new PublisherService());
+            return controller;
+        }
+        if (controllerType == AdminDashboardController.class) {
+            AdminDashboardController controller = new AdminDashboardController();
+            controller.setBookService(new BookService());
+            controller.setTransactionService(new BookTransactionService());
             return controller;
         }
         throw new IllegalArgumentException("Unsupported FXML controller: " + controllerType.getName());

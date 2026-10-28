@@ -38,6 +38,10 @@ public class BookTransactionService {
         return unreturned;
     }
 
+    public List<BookTransaction> findAll() throws SQLException {
+        return repository.findAll();
+    }
+
     public BookTransaction issueBook(int memberId, int bookId,
                                      LocalDate issuedDate, LocalDate dueDate) throws SQLException {
         BookTransaction tx = new BookTransaction();
