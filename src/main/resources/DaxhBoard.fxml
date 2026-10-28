@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="919.0" styleClass="app-background" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AdminDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="908.0" prefWidth="1418.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AdminDashboardController">
    <children>
-      <BarChart fx:id="BookBarChart" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="42.0" AnchorPane.rightAnchor="460.0" AnchorPane.bottomAnchor="0.0">
+      <BarChart fx:id="BookBarChart" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="454.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -17,6 +17,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="42.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" />
+      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="454.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" />
    </children>
 </AnchorPane>
