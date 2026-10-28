@@ -3,6 +3,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LoginApp",
+            "request": "launch",
+            "mainClass": "com.example/com.example.LoginApp",
+            "projectName": "library_management"
+        },
+        {
+            "type": "java",
+            "name": "UserApp",
+            "request": "launch",
+            "mainClass": "com.example/com.example.UserApp",
+            "projectName": "library_management"
+        },
+        {
+            "type": "java",
             "name": "MemberApp",
             "request": "launch",
             "mainClass": "com.example/com.example.MemberApp",

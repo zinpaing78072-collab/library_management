@@ -26,7 +26,6 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Objects;
 
 /** Controller for the user-management screen. */

@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-import java.net.URL;
 import java.util.Objects;
 import java.util.function.Consumer;
 
