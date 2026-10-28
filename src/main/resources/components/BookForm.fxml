@@ -8,35 +8,29 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="673.0" prefWidth="762.0"
-            xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.controller.BookFormController">
+<AnchorPane prefHeight="696.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.BookFormController">
    <children>
-      <Label layoutX="33.0" layoutY="61.0" text="Title" />
-      <Label layoutX="33.0" layoutY="109.0" text="ISBN" />
-      <Label layoutX="33.0" layoutY="157.0" text="Author" />
-      <Label layoutX="33.0" layoutY="198.0" text="Published Year" />
-      <Label layoutX="33.0" layoutY="238.0" text="Category" />
-      <Label layoutX="33.0" layoutY="298.0" text="Description" />
-      <Label layoutX="33.0" layoutY="371.0" text="Copies" />
-      <Label layoutX="38.0" layoutY="426.0" text="Publisher" />
-      <TextField fx:id="txtTitle" layoutX="172.0" layoutY="56.0" />
-      <TextField fx:id="txtISBN" layoutX="172.0" layoutY="104.0" />
-      <TextField fx:id="txtPYear" layoutX="172.0" layoutY="192.0" />
-      <TextField fx:id="txtCopies" layoutX="172.0" layoutY="364.0" />
-      <TextArea fx:id="txtDescription" layoutX="169.0" layoutY="276.0"
-                prefHeight="66.0" prefWidth="195.0" />
-      <ComboBox fx:id="cbAuthor" layoutX="172.0" layoutY="152.0" prefWidth="150.0" />
-      <ComboBox fx:id="cbCategory" layoutX="172.0" layoutY="232.0" prefWidth="150.0" />
-      <ComboBox fx:id="cbPublisher" layoutX="172.0" layoutY="418.0" prefWidth="150.0" />
-      <ImageView fx:id="imgBook" fitHeight="190.0" fitWidth="200.0"
-                 layoutX="494.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnUploadBook" layoutX="537.0" layoutY="294.0"
-              mnemonicParsing="false" text="Upload Photo" />
-      <Button fx:id="btnSaveBook" layoutX="77.0" layoutY="536.0"
-              mnemonicParsing="false" text="Save" />
-      <Button fx:id="btnClear" layoutX="215.0" layoutY="536.0"
-              mnemonicParsing="false" text="Clear" />
+      <Label layoutX="56.0" layoutY="61.0" text="Title" />
+      <TextField fx:id="txtTitle" layoutX="180.0" layoutY="56.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="105.0" text="ISBN" />
+      <TextField fx:id="txtISBN" layoutX="180.0" layoutY="100.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="149.0" text="Author" />
+      <ComboBox fx:id="cbAuthor" layoutX="180.0" layoutY="144.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="193.0" text="Published Year" />
+      <TextField fx:id="txtPYear" layoutX="180.0" layoutY="188.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="237.0" text="Category" />
+      <ComboBox fx:id="cbCategory" layoutX="180.0" layoutY="232.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="281.0" text="Description" />
+      <TextArea fx:id="txtDescription" layoutX="180.0" layoutY="276.0" prefHeight="66.0" prefWidth="187.0" />
+      <Label layoutX="60.0" layoutY="358.0" text="Copies" />
+      <TextField fx:id="txtCopies" layoutX="180.0" layoutY="354.0" prefHeight="26.0" prefWidth="187.0" />
+      <Label layoutX="56.0" layoutY="435.0" text="Publisher" />
+      <ComboBox fx:id="cbPublisher" layoutX="180.0" layoutY="430.0" prefWidth="187.0" />
+      <ImageView fx:id="imgBook" fitHeight="309.0" fitWidth="230.0" layoutX="464.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnUploadBook" layoutX="533.0" layoutY="422.0" mnemonicParsing="false" text="Upload Photo" />
+      <Button fx:id="btnSaveBook" layoutX="56.0" layoutY="505.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="btnClear" layoutX="256.0" layoutY="505.0" mnemonicParsing="false" styleClass="button-secondary" text="Clear" />
+      <Label fx:id="btnArivial" layoutX="59.0" layoutY="392.0" managed="false" text="Arivial Copies" visible="false" />
+      <TextField fx:id="txtArrival" layoutX="180.0" layoutY="388.0" managed="false" prefHeight="26.0" prefWidth="187.0" visible="false" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@ public class BookTableController {
     @FXML private TableColumn<Book, String> colTitle;
     @FXML private TableColumn<Book, String> colISBN;
     @FXML private TableColumn<Book, Number> colCopies;
-    @FXML private TableColumn<Book, String> ColDescription;
+    @FXML private TableColumn<Book, String> colDescription;
     @FXML private TableColumn<Book, String> colImage;
     @FXML private TableColumn<Book, Number> colPYear;
 
@@ -28,6 +28,7 @@ public class BookTableController {
     private Integer authorId;
     private Integer categoryId;
     private Integer publisherId;
+    private boolean availableOnly;
 
     public void setSession(BookSession session) {
         this.bookService = session.bookService();
@@ -52,15 +53,20 @@ public class BookTableController {
     }
 
     public void applyFilters(Integer authorId, Integer categoryId, Integer publisherId) {
+        applyFilters(authorId, categoryId, publisherId, false);
+    }
+
+    public void applyFilters(Integer authorId, Integer categoryId, Integer publisherId, boolean availableOnly) {
         this.authorId = authorId;
         this.categoryId = categoryId;
         this.publisherId = publisherId;
+        this.availableOnly = availableOnly;
         loadBooks();
     }
 
     public void loadBooks() {
         try {
-            books.setAll(bookService.getBooks(authorId, categoryId, publisherId));
+            books.setAll(bookService.getBooks(authorId, categoryId, publisherId, availableOnly));
         } catch (SQLException exception) {
             throw new IllegalStateException("Could not load books from LibraryManagementSystemDB.", exception);
         }
@@ -79,7 +85,7 @@ public class BookTableController {
         colTitle.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getTitle()));
         colISBN.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getIsbn()));
         colCopies.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getCopies()));
-        ColDescription.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));
+        colDescription.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));
         colImage.setCellValueFactory(cell -> new SimpleStringProperty(storedImageName(cell.getValue().getImage())));
         colPYear.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getPublishedYear()));
     }

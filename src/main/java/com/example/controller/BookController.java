@@ -7,6 +7,7 @@ import com.example.service.BookService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
 import java.sql.SQLException;
@@ -24,12 +25,15 @@ public class BookController {
     @FXML private ComboBox<Author> cbAuthorFilter;
     @FXML private ComboBox<Category> cbCategoryFilter;
     @FXML private ComboBox<Publisher> cbPublisherFilter;
+    @FXML private Button btnAvailable;
+    @FXML private Button btnAddBook;
 
     private final ObservableList<Author> authors = FXCollections.observableArrayList();
     private final ObservableList<Category> categories = FXCollections.observableArrayList();
     private final ObservableList<Publisher> publishers = FXCollections.observableArrayList();
     private BookService bookService;
     private BookSession session;
+    private boolean availableOnly;
 
     public void setSession(BookSession session) {
         this.session = Objects.requireNonNull(session, "session");
@@ -56,6 +60,23 @@ public class BookController {
         cbAuthorFilter.valueProperty().addListener((observable, oldValue, newValue) -> applyFilters());
         cbCategoryFilter.valueProperty().addListener((observable, oldValue, newValue) -> applyFilters());
         cbPublisherFilter.valueProperty().addListener((observable, oldValue, newValue) -> applyFilters());
+    }
+
+    @FXML
+    private void handleAvailable() {
+        availableOnly = !availableOnly;
+        btnAvailable.setStyle(availableOnly ? "-fx-background-color: #1d4ed8;" : "");
+        Author author = cbAuthorFilter.getValue();
+        Category category = cbCategoryFilter.getValue();
+        Publisher publisher = cbPublisherFilter.getValue();
+        session.filterBooks(filterId(author == null ? 0 : author.getAuthorId()),
+                filterId(category == null ? 0 : category.getCategoryId()),
+                filterId(publisher == null ? 0 : publisher.getPublisherId()), availableOnly);
+    }
+
+    @FXML
+    private void handleAddBook() {
+        session.clearForm();
     }
 
     private static Author allAuthors() {

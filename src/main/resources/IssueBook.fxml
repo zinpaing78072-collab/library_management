@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.IssueBookController">
+   <children>
+      <Label layoutX="48.0" layoutY="40.0" styleClass="label-title" text="Search By Member ID" />
+      <TextField fx:id="txtSearchMemberId" layoutX="196.0" layoutY="35.0" prefWidth="260.0" />
+      <HBox layoutY="95.0" prefHeight="565.0" prefWidth="1000.0">
+         <children>
+            <TableView fx:id="tblTransactions" prefHeight="565.0" prefWidth="560.0">
+               <columns>
+                  <TableColumn fx:id="colTransactionId" prefWidth="100.0" text="Transaction ID" />
+                  <TableColumn fx:id="colBookId" prefWidth="70.0" text="Book ID" />
+                  <TableColumn fx:id="colIssuedDate" prefWidth="90.0" text="Issued Date" />
+                  <TableColumn fx:id="colDueDate" prefWidth="103.0" text="Due Date" />
+                  <TableColumn fx:id="colReturnedDate" prefWidth="107.0" text="Returned Date" />
+                  <TableColumn fx:id="colFine" prefWidth="75.0" text="Fine" />
+               </columns>
+            </TableView>
+            <AnchorPane prefHeight="565.0" prefWidth="440.0">
+               <children>
+                  <Label layoutX="56.0" layoutY="120.0" text="Member ID" />
+                  <TextField fx:id="txtMemberId" layoutX="180.0" layoutY="115.0" prefWidth="187.0" />
+                  <Label layoutX="56.0" layoutY="164.0" text="Book ID" />
+                  <TextField fx:id="txtBookId" layoutX="180.0" layoutY="159.0" prefWidth="187.0" />
+                  <Label layoutX="56.0" layoutY="208.0" text="Issued Date" />
+                  <DatePicker fx:id="dateIssue" layoutX="180.0" layoutY="203.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Label layoutX="56.0" layoutY="252.0" text="Due Date" />
+                  <DatePicker fx:id="dateDue" layoutX="180.0" layoutY="247.0" prefHeight="31.0" prefWidth="187.0" />
+                  <Button fx:id="btnIssue" layoutX="56.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickIssue" text="Issue" />
+                  <Button fx:id="btnClear" layoutX="256.0" layoutY="322.0" mnemonicParsing="false" onAction="#clickClear" styleClass="button-secondary" text="Clear" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

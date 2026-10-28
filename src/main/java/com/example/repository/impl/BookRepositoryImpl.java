@@ -79,6 +79,11 @@ public class BookRepositoryImpl extends AbstractJdbcRepository<Book> implements 
 
     @Override
     public List<Book> findByFilters(Integer authorId, Integer categoryId, Integer publisherId) throws SQLException {
+        return findByFilters(authorId, categoryId, publisherId, false);
+    }
+
+    @Override
+    public List<Book> findByFilters(Integer authorId, Integer categoryId, Integer publisherId, boolean availableOnly) throws SQLException {
         StringBuilder sql = new StringBuilder("SELECT " + COLUMNS + " FROM Book WHERE 1 = 1");
         List<Object> params = new ArrayList<>();
         if (authorId != null) {
@@ -92,6 +97,9 @@ public class BookRepositoryImpl extends AbstractJdbcRepository<Book> implements 
         if (publisherId != null) {
             sql.append(" AND PublisherId = ?");
             params.add(publisherId);
+        }
+        if (availableOnly) {
+            sql.append(" AND Copies > 0");
         }
         sql.append(" ORDER BY Title");
         return queryList(sql.toString(), params.toArray());

@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MemberApp",
+            "request": "launch",
+            "mainClass": "com.example/com.example.MemberApp",
+            "projectName": "library_management"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "com.example/com.example.Main",

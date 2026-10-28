@@ -27,8 +27,12 @@ public final class BookSession {
     }
 
     public void filterBooks(Integer authorId, Integer categoryId, Integer publisherId) {
+        filterBooks(authorId, categoryId, publisherId, false);
+    }
+
+    public void filterBooks(Integer authorId, Integer categoryId, Integer publisherId, boolean availableOnly) {
         if (tableController != null) {
-            tableController.applyFilters(authorId, categoryId, publisherId);
+            tableController.applyFilters(authorId, categoryId, publisherId, availableOnly);
         }
     }
 
@@ -45,6 +49,12 @@ public final class BookSession {
         if (tableController != null) {
             controller.setTableController(tableController);
             tableController.setSelectionHandler(controller::populateForm);
+        }
+    }
+
+    public void clearForm() {
+        if (formController != null) {
+            formController.clearForm();
         }
     }
 }

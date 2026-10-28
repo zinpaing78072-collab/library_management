@@ -27,6 +27,9 @@ public interface BookRepository {
     /** Books matching all supplied filters; null values are ignored. */
     List<Book> findByFilters(Integer authorId, Integer categoryId, Integer publisherId) throws SQLException;
 
+    /** Books matching all supplied filters; when availableOnly is true only books with Copies > 0 are returned. */
+    List<Book> findByFilters(Integer authorId, Integer categoryId, Integer publisherId, boolean availableOnly) throws SQLException;
+
     boolean deleteById(int bookId) throws SQLException;
 
     long count() throws SQLException;

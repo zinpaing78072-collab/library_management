@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,6 +39,8 @@ public class BookFormController {
     @FXML private Button btnUploadBook;
     @FXML private Button btnSaveBook;
     @FXML private Button btnClear;
+    @FXML private Label btnArivial;
+    @FXML private TextField txtArrival;
 
     private final ObservableList<Author> authors = FXCollections.observableArrayList();
     private final ObservableList<Category> categories = FXCollections.observableArrayList();
@@ -45,6 +48,7 @@ public class BookFormController {
     private BookService bookService;
     private BookTableController tableController;
     private File selectedImageFile;
+    private Book editingBook;
 
     public void setSession(BookSession session) {
         this.bookService = session.bookService();
@@ -60,10 +64,15 @@ public class BookFormController {
         btnUploadBook.setOnAction(event -> clickUploadBook());
         btnSaveBook.setOnAction(event -> clickSaveBook());
         btnClear.setOnAction(event -> clickClear());
+        btnArivial.setVisible(false);
+        btnArivial.setManaged(false);
+        txtArrival.setVisible(false);
+        txtArrival.setManaged(false);
         loadReferenceData();
     }
 
     public void populateForm(Book book) {
+        this.editingBook = book;
         txtTitle.setText(book.getTitle());
         txtISBN.setText(book.getIsbn());
         txtPYear.setText(Integer.toString(book.getPublishedYear()));
@@ -74,9 +83,18 @@ public class BookFormController {
         cbPublisher.setValue(findById(publishers, book.getPublisherId()));
         selectedImageFile = null;
         imgBook.setImage(loadImage(book.getImage()));
+        // Switch to edit mode: show arrival copies field and relabel buttons
+        btnArivial.setVisible(true);
+        btnArivial.setManaged(true);
+        txtArrival.setVisible(true);
+        txtArrival.setManaged(true);
+        txtArrival.setText("");
+        btnSaveBook.setText("Update");
+        btnClear.setText("Delete");
     }
 
     public void clearForm() {
+        this.editingBook = null;
         if (tableController != null) {
             tableController.clearSelection();
         }
@@ -90,19 +108,43 @@ public class BookFormController {
         cbPublisher.setValue(null);
         selectedImageFile = null;
         imgBook.setImage(null);
+        // Return to save mode: hide arrival copies field and reset buttons
+        btnArivial.setVisible(false);
+        btnArivial.setManaged(false);
+        txtArrival.setVisible(false);
+        txtArrival.setManaged(false);
+        btnSaveBook.setText("Save");
+        btnClear.setText("Clear");
     }
 
     @FXML
     private void clickSaveBook() {
         try {
             Book selected = tableController == null ? null : tableController.selectedBook();
-            Book book = formToBook(selected == null ? 0 : selected.getBookId());
-            bookService.saveBook(book);
-            if (tableController != null) {
-                tableController.loadBooks();
+            if (editingBook != null && selected != null) {
+                // Update mode: add arrival copies to existing copies
+                int arrival = integer(txtArrival, "Arrival copies");
+                if (arrival < 0) {
+                    throw new IllegalArgumentException("Arrival copies cannot be negative.");
+                }
+                Book book = formToBook(selected.getBookId());
+                book.setCopies(selected.getCopies() + arrival);
+                bookService.updateBook(book);
+                if (tableController != null) {
+                    tableController.loadBooks();
+                }
+                clearForm();
+                showInformation("Book updated.");
+            } else {
+                // Save mode: create a new book
+                Book book = formToBook(0);
+                bookService.saveBook(book);
+                if (tableController != null) {
+                    tableController.loadBooks();
+                }
+                clearForm();
+                showInformation("Book saved.");
             }
-            clearForm();
-            showInformation("Book saved.");
         } catch (IllegalArgumentException | SQLException exception) {
             showError("Could not save the book", exception.getMessage());
         }
@@ -110,7 +152,22 @@ public class BookFormController {
 
     @FXML
     private void clickClear() {
-        clearForm();
+        Book selected = tableController == null ? null : tableController.selectedBook();
+        if (editingBook != null && selected != null) {
+            // Delete mode
+            try {
+                bookService.deleteBook(selected.getBookId());
+                if (tableController != null) {
+                    tableController.loadBooks();
+                }
+                clearForm();
+                showInformation("Book deleted.");
+            } catch (SQLException exception) {
+                showError("Could not delete the book", exception.getMessage());
+            }
+        } else {
+            clearForm();
+        }
     }
 
     @FXML

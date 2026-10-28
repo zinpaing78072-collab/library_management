@@ -39,7 +39,9 @@ public class Main extends Application {
         });
         Parent root = loader.load();
         stage.setTitle("Library Management - Books");
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(Main.class.getResource("/css/app.css").toExternalForm());
+        stage.setScene(scene);
         stage.show();
     }
 

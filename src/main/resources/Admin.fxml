@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AdminController">
+    <children>
+        <Label fx:id="welcome" layoutX="20.0" layoutY="14.0" text="Welcome Admin" />
+        <HBox layoutY="39.0" prefHeight="702.0" prefWidth="897.0">
+            <children>
+                <VBox prefHeight="682.0" prefWidth="202.0">
+                    <children>
+                        <Button fx:id="dash" mnemonicParsing="false" onAction="#clickDash" prefHeight="26.0" prefWidth="130.0" text="DashBoard">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="acc" mnemonicParsing="false" onAction="#clickAcc" prefHeight="26.0" prefWidth="130.0" text="Accounts">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="logout" mnemonicParsing="false" onAction="#clickLogout" prefHeight="26.0" prefWidth="126.0" text="LogOut">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                </VBox>
+                <AnchorPane fx:id="anchor" prefHeight="702.0" prefWidth="675.0" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

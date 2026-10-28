@@ -42,7 +42,11 @@ public class BookService {
     }
 
     public List<Book> getBooks(Integer authorId, Integer categoryId, Integer publisherId) throws SQLException {
-        return bookRepository.findByFilters(authorId, categoryId, publisherId);
+        return getBooks(authorId, categoryId, publisherId, false);
+    }
+
+    public List<Book> getBooks(Integer authorId, Integer categoryId, Integer publisherId, boolean availableOnly) throws SQLException {
+        return bookRepository.findByFilters(authorId, categoryId, publisherId, availableOnly);
     }
 
     public List<Author> getAuthors() throws SQLException {
@@ -64,6 +68,27 @@ public class BookService {
             throw new IllegalArgumentException("A book with this ISBN already exists.");
         }
         return bookRepository.save(book);
+    }
+
+    public Book updateBook(Book book) throws SQLException {
+        validate(book);
+        Optional<Book> sameIsbn = bookRepository.findByIsbn(book.getIsbn());
+        if (sameIsbn.isPresent() && sameIsbn.get().getBookId() != book.getBookId()) {
+            throw new IllegalArgumentException("A book with this ISBN already exists.");
+        }
+        Optional<Book> existing = bookRepository.findById(book.getBookId());
+        if (existing.isEmpty()) {
+            throw new IllegalArgumentException("Book with id " + book.getBookId() + " does not exist.");
+        }
+        return bookRepository.save(book);
+    }
+
+    public void deleteBook(int bookId) throws SQLException {
+        Optional<Book> existing = bookRepository.findById(bookId);
+        if (existing.isEmpty()) {
+            throw new IllegalArgumentException("Book with id " + bookId + " does not exist.");
+        }
+        bookRepository.deleteById(bookId);
     }
 
     private void validate(Book book) throws SQLException {
