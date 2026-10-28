@@ -143,24 +143,20 @@ public class LoginApp extends Application {
         }
     }
 
-    /** Scales a nested screen to fit the content pane while keeping its original
-     *  aspect ratio, centered inside the pane. Re-fits whenever the pane is resized.
-     *  JavaFX scales a node around the center of its layout bounds, so centering is
-     *  simply (paneSize - screenSize) / 2 regardless of the scale factor. */
+    /** Positions a nested screen at the top-left of the content pane at its natural
+     *  size (1:1 scale). Scaling via scaleX/scaleY is intentionally avoided because
+     *  it distorts fixed-layout elements such as TableView columns, causing text
+     *  truncation and blurred rendering. If the screen is larger than the pane it
+     *  will overflow — AnchorPane does not clip children by default. */
     private void fitToPane(javafx.scene.layout.Region screen, AnchorPane pane) {
-        double width = screen.prefWidth(-1);
-        double height = screen.prefHeight(-1);
-        javafx.beans.binding.NumberBinding scale = javafx.beans.binding.Bindings.min(
-                pane.widthProperty().divide(width),
-                pane.heightProperty().divide(height));
-        screen.scaleXProperty().bind(scale);
-        screen.scaleYProperty().bind(scale);
-        // Centre via translateX/Y, NOT layoutX/Y: AnchorPane.layoutChildren() calls
-        // resizeRelocate() on every managed child on each layout pass, which throws
-        // "A bound value cannot be set" if layoutX/Y is bound. Translates are applied
-        // after layout (and after the centre-pivoted scale), so the math is identical.
-        screen.translateXProperty().bind(pane.widthProperty().subtract(width).divide(2));
-        screen.translateYProperty().bind(pane.heightProperty().subtract(height).divide(2));
+        screen.scaleXProperty().unbind();
+        screen.scaleYProperty().unbind();
+        screen.translateXProperty().unbind();
+        screen.translateYProperty().unbind();
+        screen.setScaleX(1.0);
+        screen.setScaleY(1.0);
+        screen.setTranslateX(0.0);
+        screen.setTranslateY(0.0);
     }
 
     private Object createNestedController(Class<?> controllerType,
