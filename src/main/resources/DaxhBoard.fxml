@@ -17,6 +17,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="709.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="9.0" AnchorPane.bottomAnchor="104.0" />
+      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="709.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="104.0" />
    </children>
 </AnchorPane>
