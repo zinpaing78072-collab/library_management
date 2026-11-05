@@ -64,6 +64,13 @@ Make sure the database server is running first, then:
 mvn clean javafx:run
 ```
 
+`com.example.LoginApp` is the entry point: the login screen, then the screen for
+the signed-in role. It can also be run straight from an IDE or with
+`java -cp target/classes:<deps> com.example.LoginApp` — the class does not extend
+`javafx.application.Application` itself, so it starts JavaFX from its `main`
+instead of tripping the launcher's "JavaFX runtime components are missing"
+check on a class-path launch.
+
 > **Note:** if you use XAMPP, MySQL only starts when XAMPP is launched. Starting
 > the app without a running database fails at startup — the table loads before
 > the form, so the whole screen aborts with a connection error.

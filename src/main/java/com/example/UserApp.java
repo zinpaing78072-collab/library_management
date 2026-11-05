@@ -10,28 +10,40 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UserApp extends Application {
+public final class UserApp {
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(UserApp.class.getResource("/User.fxml"));
-        loader.setControllerFactory(controllerType -> {
-            if (controllerType == UserController.class) {
-                UserController controller = new UserController();
-                controller.setUserService(new UserService());
-                return controller;
-            }
-            throw new IllegalArgumentException("Unsupported FXML controller: " + controllerType.getName());
-        });
-        Parent root = loader.load();
-        stage.setTitle("Library Management - Users");
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(UserApp.class.getResource("/css/app.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+    private UserApp() {
     }
 
+    /**
+     * Starts JavaFX. The outer class deliberately does not extend
+     * {@link Application}: a class that does cannot be started on a plain
+     * class path (the JDK reports "JavaFX runtime components are missing").
+     */
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(Screen.class, args);
+    }
+
+    /** The JavaFX application: the users screen on its own. */
+    public static final class Screen extends Application {
+
+        @Override
+        public void start(Stage stage) throws IOException {
+            FXMLLoader loader = new FXMLLoader(UserApp.class.getResource("/User.fxml"));
+            loader.setControllerFactory(controllerType -> {
+                if (controllerType == UserController.class) {
+                    UserController controller = new UserController();
+                    controller.setUserService(new UserService());
+                    return controller;
+                }
+                throw new IllegalArgumentException("Unsupported FXML controller: " + controllerType.getName());
+            });
+            Parent root = loader.load();
+            stage.setTitle("Library Management - Users");
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(UserApp.class.getResource("/css/app.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }

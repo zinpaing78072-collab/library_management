@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="908.0" prefWidth="1418.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AdminDashboardController">
    <children>
-      <BarChart fx:id="BookBarChart" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="709.0" AnchorPane.bottomAnchor="104.0">
+      <BarChart fx:id="BookBarChart" AnchorPane.leftAnchor="9.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="700.0" AnchorPane.bottomAnchor="104.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -17,6 +17,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="709.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="104.0" />
+      <PieChart fx:id="BookPieChart" AnchorPane.leftAnchor="721.0" AnchorPane.topAnchor="104.0" AnchorPane.rightAnchor="80.0" AnchorPane.bottomAnchor="274.0" labelsVisible="false" />
    </children>
 </AnchorPane>
